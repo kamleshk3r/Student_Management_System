@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            background-image: url('clg.jpg');
+            background-size: cover;
+            background-color: transparent;
+            background-color: rgba(255, 255, 255,0.8);
+
+            /*argin: 0;
+            padding: 0;*/
+        }
+
+        form {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: transparent;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            display: none;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        h2 {
+            color: #000000;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            background-color: #8d8585;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            display: inline-block;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"],
+        button {
+            background-color:#8d8585;
+            color: #000000;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form id="studentwForm" action="connection.php" method="post">
+        <div class="section active" id="personalSection">
+            <h2>Personal Information</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age">
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone">
+
+            <label for="dob">Date of Birth:</label>
+            <br>
+            <input type="date" id="dob" name="dob" placeholder="dd-mm-yyyy" required>
+            <br>
+            <button type="button" onclick="showSection('academicSection')" font-weight="bold">Next</button>
+        </div>
+        <div class="section" id="academicSection">
+            <h2>Academic Information</h2>
+            <label for="sscSchoolName">SSC School Name:</label>
+            <input type="text" id="sscSchoolName" name="sscSchoolName">
+
+            <label for="sscBoard">SSC School Board:</label>
+            <input type="text" id="sscBoard" name="sscBoard">
+
+            <label for="sscResult">SSC Result (%):</label>
+            <input type="text" id="sscResult" name="sscResult">
+
+            <label for="hscSchoolName">HSC School Name:</label>
+            <input type="text" id="hscSchoolName" name="hscSchoolName">
+
+            <label for="hscBoard">SSC School Board:</label>
+            <input type="text" id="hscBoard" name="hscBoard">
+
+            <label for="hscSchoolName">HSC Result (%):</label>
+            <input type="text" id="hscResult" name="hscResult">
+            <button type="button" onclick="showSection('residentialSection')">Next</button>
+        </div>
+
+        <div class="section" id="residentialSection">
+            <h2>Residential Information</h2>
+            <label for="nationality">Nationality:</label>
+            <input type="text" id="nationality" name="nationality">
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address">
+            
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city">
+
+            <label for="pincode">Pincode:</label>
+            <input type="text" id="pincode" name="pincode">
+            
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state">
+
+            <button type="button" onclick="showSection('familySection')">Next</button>
+        </div>
+
+        <div class="section" id="familySection">
+            <h2>Family Information</h2>
+            <label for="fathersName">Father's Name:</label>
+            <input type="text" id="fathersName" name="fathersName">
+
+            <label for="fathersEmail">Father's Email:</label>
+            <input type="text" id="fathersEmail" name="fathersEmail">
+
+            <label for="fathersPhone">Father's Phone Number:</label>
+            <input type="text" id="fathersPhone" name="fathersPhone">
+
+            <label for="mothersName">Mother's Name:</label>
+            <input type="text" id="mothersName" name="mothersName">
+
+            <label for="mothersEmail">Mother's Email:</label>
+            <input type="text" id="mothersEmail" name="mothersEmail">
+
+            <label for="mothersPhone">Mother's Phone Number:</label>
+            <input type="text" id="mothersPhone" name="mothersPhone">
+
+            <label for="guardianName">Guardian's Name:</label>
+            <input type="text" id="guardianName" name="guardianName">
+
+            <label for="guardianPhone">Guardian's Phone Number:</label>
+            <input type="text" id="guardianPhone" name="guardianPhone">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.getElementsByClassName('section');
+            for (let section of sections) {
+                section.classList.remove('active');
+            }
+            document.getElementById(sectionId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
